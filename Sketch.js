@@ -1,11 +1,21 @@
-var myCar;
+//This project will be 2 pumkins on wheels racing
+//The same mechanics as the car codes
+//Adding looping, car engine, and driving sound
+//Adding so two people can play
+//The spacebar will be the engine
+//"A" will start Pumpkin 1, z will be the breaks(figure out letter buttons)
+//"K" will start Pumpkin 2, M will be the breaks
+
+var mypumpkin;
+var mypumpkin2;
 
 function setup()
 {
   createCanvas(800, 400);
 
   // create the car
-  myCar = new Car();
+  mypumpkin = new Pumpkin();
+  mypumpkin2 = new Pumpkin2();
 }
 
 function draw()
