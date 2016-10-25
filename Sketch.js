@@ -16,20 +16,48 @@ function setup ()
 
 function draw()
 {
+  //stopping cart
+  if(pumpkin.x > 600)
+  {
+    pumpkin.brake();
+  }
+
   pumpkin.display();
   pumpkin.move();
 }
 
 //Making the object move
+function keyPressed()
+{
+  pumpkin.x = 0;
+  pumpkin.speed = 2;
+}
 
 function PumpkinCart()
 {
-  //The moving part
-  this.speed = 5;
+  this.x = 0;
+  this.y = 200;
+  this.speed = 2;
 
-  this.move = function ()
+  // drive method
+  this.move = function()
   {
-    this.x += random(-this.speed, this.speed);
+    if(this.x > width)
+    {
+      this.x = 0;
+    }
+    this.x = this.x + this.speed;
+  }
+
+  // brake method
+  this.brake = function()
+  {
+    if(this.speed > 0)
+    {
+      this.speed = this.speed - 0.05;
+    } else {
+      this.speed = 0;
+    }
   }
 
   //the Actual cart
@@ -39,13 +67,13 @@ function PumpkinCart()
     //body
     noStroke();
     fill(218, 165, 32);
-    ellipse(50, 200, 100, 100);
-    ellipse(100, 200, 100, 100);
+    ellipse(this.x, this.y, 100, 100);
+    ellipse(this.x, this.y, 100, 100);
 
     //wheels
     fill(0);
-    ellipse(30, 250, 50, 50);
-    ellipse(130, 250, 50, 50);
+    ellipse(this.x, this.y, 50, 50);
+    ellipse(this.x, this.y, 50, 50);
 
     //eyes
     triangle(30, 200, 50, 200, 40, 175);
