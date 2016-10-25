@@ -1,96 +1,55 @@
-//This project will be 2 pumkins on wheels racing
-//The same mechanics as the car codes
-//Adding looping, car engine, and driving sound
-//Adding so two people can play
-//The spacebar will be the engine
-//"A" will start Pumpkin 1, z will be the breaks(figure out letter buttons)
-//"K" will start Pumpkin 2, M will be the breaks
+//Tatyana Lee
 
-var mypumpkin;
-var mypumpkin2;
+//Pumpkin race for two players
+//https://p5js.org/examples/structure-loop.html Reference used
+//http://coursescript.com/notes/interactivecomputing/objects/
+//Name for the variables
+var pumpkin;
 
-function setup()
+function setup ()
 {
   createCanvas(800, 400);
-
-  // create the car
-  mypumpkin = new Pumpkin();
-  mypumpkin2 = new Pumpkin2();
+  background(50, 205, 50, 215);
+  //Create Object
+  pumpkin = new PumpkinCart();
 }
 
 function draw()
 {
-  // clear background
-  background(46, 139, 87);
-
-  // check the xpos of myCar
-  // if myCar is approaching the edge of the screen, apply the brakes
-  if(myCar.xpos > 600)
-  {
-    myCar.brake();
-  }
-
-  // drive car
-  myCar.drive();
-
-  // display the car
-  myCar.display();
-
-  // display the speed
-  fill(50);
-  noStroke();
-  text("Speed: " + myCar.speed, 25, 25);
-
-  // display instructions
-  text("Press any key to reset the xpos of myCar", 25, height - 50);
+  pumpkin.display();
+  pumpkin.move();
 }
 
-function keyPressed()
-{
-  myCar.xpos = 0;
-  myCar.speed = 2;
-}
+//Making the object move
 
-// car constructor
-function Car()
+function PumpkinCart()
 {
-  this.xpos = 0;
-  this.ypos = 200;
-  this.speed = 2;
-  this.c = color(153, 102, 51);
+  //The moving part
+  this.speed = 5;
 
-  // drive method
-  this.drive = function()
+  this.move = function ()
   {
-    if(this.xpos > width)
-    {
-      this.xpos = 0;
-    }
-    this.xpos = this.xpos + this.speed;
+    this.x += random(-this.speed, this.speed);
   }
 
-  // brake method
-  this.brake = function()
+  //the Actual cart
+  this.display = function ()
   {
-    if(this.speed > 0)
-    {
-      this.speed = this.speed - 0.05;
-    } else {
-      this.speed = 0;
-    }
-  }
+    push();
+    //body
+    noStroke();
+    fill(218, 165, 32);
+    ellipse(50, 200, 100, 100);
+    ellipse(100, 200, 100, 100);
 
-  // display method
-  this.display = function()
-  {
-    // body of the car
-    fill(this.c);
-    rectMode(CORNER);
-    rect(this.xpos, this.ypos, 100, 50);
-
-    // wheels
+    //wheels
     fill(0);
-    ellipse(this.xpos + 20, this.ypos + 45, 40, 40);
-    ellipse(this.xpos + 80, this.ypos + 45, 40, 40);
+    ellipse(30, 250, 50, 50);
+    ellipse(130, 250, 50, 50);
+
+    //eyes
+    triangle(30, 200, 50, 200, 40, 175);
+    triangle(100, 200, 120, 200, 110, 175);
+    pop();
   }
 }
