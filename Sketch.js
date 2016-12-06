@@ -11,7 +11,7 @@ function setup ()
   createCanvas(800, 400);
   background(50, 205, 50, 215);
   //Create Object
-  pumpkin = new PumpkinCart();
+  pumpkin = new PumpkinCart(heigh/2, weight/2);
 }
 
 function draw()
@@ -49,17 +49,6 @@ function PumpkinCart()
     this.x = this.x + this.speed;
   }
 
-  // brake method
-  this.brake = function()
-  {
-    if(this.speed > 0)
-    {
-      this.speed = this.speed - 0.05;
-    } else {
-      this.speed = 0;
-    }
-  }
-
   //the Actual cart
   this.display = function ()
   {
@@ -67,13 +56,13 @@ function PumpkinCart()
     //body
     noStroke();
     fill(218, 165, 32);
-    ellipse(this.x, this.y, 100, 100);
-    ellipse(this.x, this.y, 100, 100);
+    ellipse(50, 200, 100, 100);
+    ellipse(100, 200, 100, 100);
 
     //wheels
     fill(0);
-    ellipse(this.x, this.y, 50, 50);
-    ellipse(this.x, this.y, 50, 50);
+    ellipse(30, 250, 50, 50);
+    ellipse(130, 250, 50, 50);
 
     //eyes
     triangle(30, 200, 50, 200, 40, 175);
