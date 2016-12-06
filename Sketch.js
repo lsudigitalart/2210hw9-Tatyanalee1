@@ -6,52 +6,31 @@
 //Name for the variables
 var pumpkin;
 
-function setup ()
-{
+function setup () {
   createCanvas(800, 400);
   background(50, 205, 50, 215);
   //Create Object
-  pumpkin = new PumpkinCart(heigh/2, weight/2);
+  pumpkin = new PumpkinCart(width/3, height/3);
 }
 
-function draw()
-{
-  //stopping cart
-  if(pumpkin.x > 600)
-  {
-    pumpkin.brake();
-  }
-
-  pumpkin.display();
+function draw() {
+//if keypressed it moves
   pumpkin.move();
+  pumpkin.display();
 }
 
-//Making the object move
-function keyPressed()
-{
-  pumpkin.x = 0;
-  pumpkin.speed = 2;
-}
-
-function PumpkinCart()
-{
-  this.x = 0;
-  this.y = 200;
-  this.speed = 2;
+function PumpkinCart(tempX) {
+  this.x = tempX;
+  this.speed = 2.5;
 
   // drive method
-  this.move = function()
-  {
-    if(this.x > width)
-    {
-      this.x = 0;
-    }
-    this.x = this.x + this.speed;
-  }
+  this.move = function() {
+  this.x = random(-this.speed, this.speed);
+  this.y = 0;
+};
 
   //the Actual cart
-  this.display = function ()
-  {
+  this.display = function () {
     push();
     //body
     noStroke();
@@ -68,5 +47,5 @@ function PumpkinCart()
     triangle(30, 200, 50, 200, 40, 175);
     triangle(100, 200, 120, 200, 110, 175);
     pop();
-  }
+  };
 }
